@@ -1,0 +1,22 @@
+h1{
+    color: rgb(119, 0, 255);
+}
+.cmt_text{
+  width: 90%;
+  height: 60px;
+  border: none;
+  border-bottom: 1px solid black;
+}
+.radio{
+  float:left;
+}
+.button{
+  height: 40px;
+  width: 100px;
+  border: none;
+  background-color: rgb(228, 230, 235);
+  border-radius: 10px;
+}
+.button:hover{
+  background-color: rgb(134, 134, 192);
+}
