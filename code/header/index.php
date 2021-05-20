@@ -22,7 +22,7 @@
                 </div>
                 <div class="header__menu-search">
                     <form action="">
-                    <input class="form-control mr-sm-2 search" type="text" placeholder="  Bạn cần mua gì hôm nay ?"autocomplete="off">
+                    <input class="form-control search" type="text" placeholder="Bạn cần mua gì hôm nay ?"autofocus="">
                     <button aria-label= "btn-search">
                     <i class="fas fa-search"></i>
                     </button>
@@ -35,7 +35,7 @@
                             Giỏ Hàng</a>
                     </li>
                     <li class="list__item">
-                        <a href="#" class="list__item-link ">
+                        <a href="./login.php" class="list__item-link ">
                         <i class="far fa-user-circle"></i>
                             Tài khoản</a>
                     </li>
