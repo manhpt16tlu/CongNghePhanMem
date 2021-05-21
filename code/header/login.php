@@ -1,3 +1,6 @@
+<?php
+    require("connect.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +32,7 @@
 
     <div class="login-form">
         <!--signin-->
-        <form class="form-signin">
+        <form class="form-signin" >
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
             <input type="email"  class="form-control" placeholder="Email address" required="" autofocus="">
             <input type="password"  class="form-control" placeholder="Password" required="">
@@ -42,9 +45,6 @@
         <form action="/signup/" class="form-signup">
         <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Register</h1>
                 <input type="email" id="user-email" class="form-control" placeholder="Email address" required autofocus="">
-                <input type="text" id="user-name" class="form-control" placeholder="Full name" required="" autofocus="">
-                <input type="text" id="user-name" class="form-control" placeholder="Address" required="" autofocus="">
-                <input type="text" id="user-name" class="form-control" placeholder="Phone" required="" autofocus="">
                 <input type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
                 <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="">
 
