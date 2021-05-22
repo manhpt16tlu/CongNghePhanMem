@@ -1,5 +1,40 @@
 <?php
     require("connect.php");
+    session_start();
+    $err = [];
+    if(isset($_POST['login']))
+    {
+        $email = $_POST['txtEmail'];
+        $pass  = $_POST['txtpassword'];
+        $pass = md5($pass);
+        $sql   = "SELECT * from tai_khoan where email = '$email'";
+        $query = mysqli_query($conn,$sql);
+        $data  = mysqli_fetch_assoc($query);
+        $checkemail = mysqli_num_rows($query);
+        if($checkemail ==1)
+        {   
+            if($pass==$data['pass'])
+            {
+                $_SESSION['user'] = $data;
+               if($data['quyendn']==1)
+               {
+                    header('location:admin.php');
+               }
+               else
+               {
+                
+                header('location:header.php');
+               }
+            }
+            else{
+                $err['pass']="Mật khẩu không đúng";
+            }
+            
+        }
+        else{
+            $err['email']="Email không chính xác";
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,36 +56,29 @@
         <div class="container">
             <div class="header__menu">
                 <div class="header__menu-logo">
-                   <a href="index.php" class="header__menu-link">Moon House</a>
+                   <a href="header.php" class="header__menu-link">Moon House</a>
                 </div>
                 <div class="header-link">
-                <a href="./index.php"class= "list__item-link"><i class="fas fa-chevron-left"></i>Back</i></a>
+                <a href="./header.php"class= "list__item-link"><i class="fas fa-chevron-left"></i>Back</i></a>
                 </div>
             </div>
         </div>
 </div>
-
     <div class="login-form">
         <!--signin-->
-        <form class="form-signin" >
-            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
-            <input type="email"  class="form-control" placeholder="Email address" required="" autofocus="">
-            <input type="password"  class="form-control" placeholder="Password" required="">
-            
-            <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
-            <a href="#" id="forgot_pswd">Forgot password?</a>
+        <form class="form-signin" method="POST">
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Đăng nhập</h1>
+            <input name="txtEmail"class="form-control" placeholder="Email address" required="" autofocus=""autocomple="off">
+            <div class="err">
+                    <span><?php echo (isset($err['email'])?$err['email']:'')?></span>
+                </div>
+            <input type="password" name = "txtpassword"  class="form-control" placeholder="Password" required=""autocomple="off">
+            <div class="err">
+                    <span><?php echo (isset($err['pass'])?$err['pass']:'')?></span>
+                </div>
+            <input class="btn btn-success btn-block" type="submit" value="Sign in " name = "login"></input>
         </form>
-        <p style="text-align:center"> OR  </p>
-    <div class="register-form">
-        <form action="/signup/" class="form-signup">
-        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Register</h1>
-                <input type="email" id="user-email" class="form-control" placeholder="Email address" required autofocus="">
-                <input type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
-                <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="">
-
-                <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
-            </form>
-    </div>
+        <?php include("register.php")?>
 </div>  
 </body>
 </html>

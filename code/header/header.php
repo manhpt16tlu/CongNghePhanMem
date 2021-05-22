@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    require('connect.php');
+    $user=(isset($_SESSION['user'])?$_SESSION['user']:[]);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,13 +23,13 @@
         <div class="container">
             <div class="header__menu">
                 <div class="header__menu-logo">
-                   <a href="index.php" class="header__menu-link">Moon House</a>
+                   <a href="header.php" class="header__menu-link">Moon House</a>
                 </div>
                 <div class="header__menu-search">
                     <form action="">
                     <input class="form-control search" type="text" placeholder="Bạn cần mua gì hôm nay ?"autofocus="">
-                    <button aria-label= "btn-search">
-                    <i class="fas fa-search"></i>
+                    <button aria-label= "btn-search" type='submit' name = 'search'>
+                    <i class="fas fa-search"></i>   
                     </button>
                     </form>
                 </div>
@@ -35,11 +40,26 @@
                             Giỏ Hàng</a>
                     </li>
                     <li class="list__item">
-                        <a href="./login.php" class="list__item-link ">
-                        <i class="far fa-user-circle"></i>
-                            Tài khoản</a>
+                        <?php if(isset($user['email']))
+                        {
+                            echo '<a href="#" class="list__item-link">';
+                            echo '<i class="far fa-user-circle"></i>';
+                                 echo $user['email'] ;
+                            echo '</a> ';
+                            
+                             echo  ' <li class="list__item"> ';
+                             echo   '<a href="logout.php" class="list__item-link">';
+                             echo   '<i class="fas fa-sign-out-alt" ></i>';
+                             echo   'Đăng xuất</a></li>';
+                        }
+                         else{
+                            echo'<a href="./login.php" class="list__item-link">';
+                            echo'<i class="far fa-user-circle"></i>';
+                            echo '    Tài Khoản';
+                            echo '</a> ';
+                         }
+                        ?>
                     </li>
-                    
                 </ul>
             </div>
 
