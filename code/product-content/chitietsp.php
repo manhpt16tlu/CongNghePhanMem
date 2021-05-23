@@ -48,7 +48,7 @@ else
    
     <title>Document</title>
 <style>
-  .cart
+ /* .cart
   {
     position: relative;
     top:-30px;
@@ -59,17 +59,23 @@ else
   {
     position: absolute;
      right:0px
-  }
+  }*/
 </style>
 </head>
 <body>
-
+  <div class="header">
+<div class="btn-back">
+<a id="btn-back" href="danhmuc.php">Quay về trang danh mục sản phẩm</a>
+</div>
 <div class="cart">
+          
 
-          <a href="cart.php"><button type="button" class="btn btn-info"><i class="fas fa-cart-plus"></i>Cart</button></a>
+          <a href="cart.php"><button type="button" class="btn btn-info"><i class="fas fa-cart-plus"></i> Giỏ hàng</button></a>
+</div>
 </div>
   <div class="product-content">
      <div class="product-price">
+    
        <div class="container clearfix">
          <div class="col-5">
            <div class="product-price__image">
@@ -94,13 +100,13 @@ else
              <p><span>Yêu thích</span>[MÃ MADE20K3Q GIẢM 20% TỐI ĐA 30K ĐƠN TỐI THIỂU 500K] <?php echo ucwords($name);?></p>
             </div>
             <div class="rate-bar">
-                <a href="">Xem đánh giá từ khách hàng</a>              
+                           
               <div class="number-sell"><span><?php echo $conlai;?></span>Còn lại</div>
               <div class="number-sold"><span><?php echo $daban;?></span>Đã bán</div>
 
             </div>
             <div class="price">
-              <p><?php echo $price;?></p>
+              <p><?php echo $price;?>đ</p>
             </div>
             
             <div class="mota"><p>Mô tả sản phẩm:</p>
@@ -114,10 +120,11 @@ else
             
             </div>
             <form action="cart.php" method = "POST">
+            <a href="#" id="cmt">Xem đánh giá từ khách hàng</a>  
             <div class="add-btn">
             <button type="submit" name="add-to-cart"><i class="fas fa-cart-plus"></i>Thêm vào giỏ hàng</button>
             </div>
-           
+            
               <input type="hidden" name = "idsp" value ="<?php echo $idsp;?>">
               <input type="hidden" name = "name" value = "<?php echo $name;?>">
               <input type="hidden" name = "img" value = "<?php echo $img;?>">
@@ -155,7 +162,7 @@ else
   
     
     
-    <a href="danhmuc.php">Quay về trang danh mục sản phẩm</a>
+
   <script src="assets/main.js"></script>
 
       

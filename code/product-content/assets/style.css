@@ -101,9 +101,11 @@ body{
 }
 .product-content
 {
+	
 	width: 95%;
-	margin: 50px auto;
+	margin: 0px auto;
 	background-color: white;
+	margin-bottom: 15px;
 }
 /*-------------------------css image block*/
 .image__main
@@ -140,11 +142,21 @@ body{
 }
 .item:hover img {
 	transform: scale(1.2);
-
 	transition: 0.4s;
 	cursor: pointer;
 	
 }
+.header
+{
+
+	
+	margin: 20px 30px;
+	    display: flex;
+    justify-content: space-between;
+	align-items: baseline;
+	
+}
+
 /*------------------css phần giá và đặt hàng-----------------*/
 .product-price__detail
 {
@@ -181,12 +193,39 @@ body{
 	font-size: 35px;
 	color:#EE4D2D;	
 }
-.add-btn 
+
+a#cmt
 {
-	margin: 100px 0 100px 150px;
+	font-size: 105%;
+	color:black;
+
+	position: relative;
+	left: 500px;
+	top:215px;
+	
+	background-color: aqua;
+	
+}
+a#btn-back
+{
+	border-radius: 90px 0 0 90px; 
+	transition: 0.4s;
+	color:black;
+	background-color: white;
+	padding: 10px;
+	border:1px solid #D0011B;
+}
+a#btn-back:hover
+{
+	background-color: #f44336;
+	color: white;
 }
 .add-btn button
 {
+	
+	left: 35px;
+    position: relative;
+    top: 180px;
 	cursor: pointer;
 	color:#D0011B;
     background-color: #F9E0E3;
@@ -196,8 +235,36 @@ body{
 .share
 {
 	text-align: center;
+	position: relative;
+	top:150px;
 }
 .product-feature
 {
 	margin: 50px 0 0 0;
 }
+.cart button
+{
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	background-color: white; 
+  color: black; 
+  border: 2px solid #f44336;
+	
+}
+.cart button:hover {
+	background-color: #f44336;
+	color: white;
+  }
+  .cart i
+  {
+	  font-size: 25px;
+  }
