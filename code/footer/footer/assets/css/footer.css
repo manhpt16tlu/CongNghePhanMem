@@ -1,0 +1,49 @@
+.container_a{
+    overflow: hidden;
+    background-color: darkslategray;
+    color: blanchedalmond;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.information{
+   width: 25%;
+   float:left;
+}
+.product{
+    width: 25%;
+    float: left;
+}
+.policy{
+    width: 25%;
+    float: left;
+}
+.contact{
+    width: 25%;
+    float: left;
+}
+.footer_a{
+    text-decoration: none;
+    color: white;
+}
+.footer_ul{
+    list-style-type: none;
+    padding: 0;
+}
+img{
+    border-radius: 30px;
+}
+.information a{
+    border: 1px solid springgreen;
+    border-radius: 30px;
+    color: azure;
+    background-color: rgb(4, 12, 12);
+}
+.footer_a:hover{
+    background-color: rgb(20, 20, 20);
+}
+.footer_h1{
+    font-family: fantasy;
+    font-size: 40px;
+}
+.end hr{
+    width: 80%;
+}
