@@ -1,6 +1,6 @@
 <?php
 define('HOST','localhost');
-define('DATABASE','cuahangbandogiadung');
+define('DATABASE','cnpm');
 define('USERNAME','root');
 define('PASSWORD','');
 ?>

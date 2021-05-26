@@ -1,7 +1,7 @@
 <?php
 session_start();
 $user=(isset($_SESSION['user'])?$_SESSION['user']:[]);
-echo $user['id_tk'];
+$idtk =  $user['id_tk'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,18 +17,57 @@ echo $user['id_tk'];
 include 'connect.php';
    if(isset($_POST['submit-dathang']))
    {
-   $ten = $_POST['ten'];
-   if(mysqli_query($conn,"INSERT INTO donhang(ghi_chu) VALUES ('$ten')") == TRUE)
-    {
-       echo '<div class="alert alert-success" role="alert">
-       Đặt hàng thành công
-     </div>';
+    $ten = $_POST['ten'];
+    $dc = $_POST['dc'];
+    $sdt = $_POST['sdt'];
+   $mydate = getdate(date("U"));
+   $time = $mydate['weekday'].",".$mydate['month'].",".$mydate['mday'].",".$mydate['year'];
+   $ghichu =  $_SESSION['mota']." tổng tiền là: ".$_SESSION['tongtien'];
+    
+   $sql = "SELECT id_tk FROM khachhang";
+   $result = $conn->query($sql);
    
-    }
-    else
-    {
-        echo "lỗi rồi sorry";
-    }
+     $arr = array();
+     $i = 0;
+     while($row = $result->fetch_assoc()) {
+       $arr[$i] = $row['id_tk'];
+       $i = $i + 1;
+
+     }
+     if(!in_array($idtk, $arr))
+     {
+      if($conn->query("INSERT INTO khachhang(ten_kh,id_tk,diachi,sdt) VALUES ('$ten','$idtk','$dc','$sdt')") === TRUE)
+      {
+        $last_id = $conn->insert_id;
+        if($conn->query("INSERT INTO donhang(id_kh,ngay_dat,ghi_chu,tinhtrang_gh) VALUES ('$last_id','$time','$ghichu','đang giao')") === TRUE) 
+        {
+          echo "<script>alert('đặt hàng thành công')</script>";
+          ?>
+          <a href="index.php"><button type="button" class="btn btn-primary">Quay về trang chủ</button></a>
+ 
+          <?php
+        }
+      }
+     }
+     else
+     {
+         
+      $sql = "SELECT id_kh FROM khachhang WHERE id_tk = '$idtk'";
+      $result = $conn->query($sql);
+      
+      while($row = $result->fetch_assoc()) {
+        $last_id = $row['id_kh'];
+      }
+      if($conn->query("INSERT INTO donhang(id_kh,ngay_dat,ghi_chu,tinhtrang_gh) VALUES ('$last_id','$time','$ghichu','đang giao')") === TRUE) 
+        {
+          echo "<script>alert('đặt hàng thành công')</script>";
+          ?>
+           <a href="index.php"><button type="button" class="btn btn-primary">Quay về trang chủ</button></a>
+          <?php
+        }
+
+    
+     }
    }
 else
 {

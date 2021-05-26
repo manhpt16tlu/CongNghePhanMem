@@ -1,5 +1,6 @@
 <?php 
 require('connect.php');
+include 'header.php';
     $name = isset($_GET['name']) ? $_GET['name']:'';
     $sql = "SELECT * FROM `sanpham`";
     $sql1 = "SELECT * FROM `sanpham` WHERE `ten_sp`LIKE '%$name %'or `gia_sp`<'$name'";
@@ -12,7 +13,7 @@ require('connect.php');
     {
         $query = $conn->query($sql);
     }
-    include 'header.php';
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,8 +52,8 @@ require('connect.php');
             <div class="row">
             <?php
                 include 'connect.php';
-                $sql = 'select * from danhmucsp';
-                $result = $conn->query($sql);
+                $sql3 = 'select * from danhmucsp';
+                $result = $conn->query($sql3);
                 while($row = $result->fetch_assoc()) {  
                     echo '
                         <div class="col c-10">

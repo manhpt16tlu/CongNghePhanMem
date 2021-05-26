@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 24, 2021 lúc 05:35 PM
--- Phiên bản máy phục vụ: 10.4.18-MariaDB
--- Phiên bản PHP: 7.4.16
+-- Host: 127.0.0.1
+-- Generation Time: May 26, 2021 at 05:14 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `cuahangbandogiadung`
+-- Database: `cuahangbandogiadung`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `binhluansp`
+-- Table structure for table `binhluansp`
 --
 
 CREATE TABLE `binhluansp` (
@@ -38,7 +38,7 @@ CREATE TABLE `binhluansp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `binhluansp`
+-- Dumping data for table `binhluansp`
 --
 
 INSERT INTO `binhluansp` (`id_Bl`, `id_tk`, `id_sp`, `sosao`, `hinhanh`, `ND`, `ngaybinhluan`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `binhluansp` (`id_Bl`, `id_tk`, `id_sp`, `sosao`, `hinhanh`, `ND`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitiet_dh`
+-- Table structure for table `chitiet_dh`
 --
 
 CREATE TABLE `chitiet_dh` (
@@ -63,7 +63,7 @@ CREATE TABLE `chitiet_dh` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhmucsp`
+-- Table structure for table `danhmucsp`
 --
 
 CREATE TABLE `danhmucsp` (
@@ -73,7 +73,7 @@ CREATE TABLE `danhmucsp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `danhmucsp`
+-- Dumping data for table `danhmucsp`
 --
 
 INSERT INTO `danhmucsp` (`id_Dsp`, `id_Nsp`, `name_Nsp`) VALUES
@@ -91,53 +91,92 @@ INSERT INTO `danhmucsp` (`id_Dsp`, `id_Nsp`, `name_Nsp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `donhang`
+-- Table structure for table `donhang`
 --
 
 CREATE TABLE `donhang` (
   `id_dh` int(11) NOT NULL,
   `id_kh` int(11) NOT NULL,
-  `ngay_dat` date NOT NULL,
-  `ngay_giao` date NOT NULL,
+  `ngay_dat` varchar(30) NOT NULL,
   `ghi_chu` varchar(100) NOT NULL,
-  `tinhtrang_tt` tinyint(4) NOT NULL,
   `tinhtrang_gh` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `donhang`
+--
+
+INSERT INTO `donhang` (`id_dh`, `id_kh`, `ngay_dat`, `ghi_chu`, `tinhtrang_gh`) VALUES
+(15, 3, 'Wednesday,May,26,2021', ' tổng tiền là: 5980000đ', 0),
+(16, 3, 'Wednesday,May,26,2021', ' tổng tiền là: 1450000đ', 0),
+(17, 1, 'Wednesday,May,26,2021', ' tổng tiền là: 1440000đ', 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `image`
+-- Table structure for table `image`
 --
 
 CREATE TABLE `image` (
   `id_i` int(11) NOT NULL,
   `id_sp` int(11) NOT NULL,
-  `image` varchar(200) NOT NULL
+  `image` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`id_i`, `id_sp`, `image`) VALUES
+(1, 16, 'https://images.samsung.com/is/image/samsung/vn-side-by-side-rs64t5f01b4-rs64t5f01b4-sv-lperspectiveblack-266821179?$684_547_PNG$'),
+(2, 16, 'https://images.samsung.com/is/image/samsung/vn-side-by-side-rs64t5f01b4-rs64t5f01b4-sv-frontopenwithoutfoodblack-266821187?$684_547_PNG$'),
+(3, 16, 'https://images.samsung.com/is/image/samsung/vn-side-by-side-rs64t5f01b4-rs64t5f01b4-sv-detailallaroundcoolingblack-266821183?$684_547_PNG$'),
+(4, 16, 'https://images.samsung.com/is/image/samsung/vn-side-by-side-rs64t5f01b4-rs64t5f01b4-sv-detaildispenserblack-266821182?$684_547_PNG$'),
+(5, 17, 'https://cdn.tgdd.vn/Products/Images/2403/210372/chao-sau-nhom-chong-dinh-day-tu-28cm-sunhouse-shg1-9.jpg'),
+(6, 17, 'https://sunhouse.com.vn/pic/product/images/chao_da_hoa_cuong_day_tu_shm30d-001.jpg'),
+(7, 17, 'https://cdn.tgdd.vn/Products/Images/2403/210372/chao-sau-nhom-chong-dinh-day-tu-28cm-sunhouse-shg1-10.jpg'),
+(8, 17, 'https://sunhouse.com.vn/pic/thumb/large/product/sunhouse-sfp24b_00117.jpg'),
+(9, 18, 'https://sunhouse.com.vn/pic/product/images/image-20191115113457-1.jpeg'),
+(10, 18, 'https://vn-live-01.slatic.net/p/d51bdc8c81978aae795b24e51f33d7cc.jpg'),
+(11, 18, 'https://vn-live-01.slatic.net/p/70853ebddbafd28972b9dc32f3842fd8.jpg'),
+(12, 18, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb-yQCAR1AdgOHr5hgnoziRCocQ-hrg1UMjA&usqp=CAU'),
+(13, 22, 'https://s.meta.com.vn/img/thumb.ashx/498x500x95/Data/image/2019/06/16/quat-treo-tuong-cong-nghiep-haiki-hk750t.jpg'),
+(14, 22, 'https://img.websosanh.vn/v2/users/wss/images/quat-treo-tuong-cong-nghiep/qpzda7go4vtn3.jpg?compress=85&width=220'),
+(15, 22, 'https://nakami.com.vn/wp-content/uploads/2020/04/Qu%E1%BA%A1t-treo-t%C6%B0%E1%BB%9Dng-c%C3%B4ng-nghi%E1%BB%87p-NAT65A-NAT75A-01.jpg'),
+(16, 22, 'https://i.imgur.com/PPLjJIOl.jpg'),
+(17, 19, 'https://homeeco.com.vn/wp-content/uploads/2020/12/ezgif-1-08f72d97fd4a.jpg'),
+(18, 19, 'https://eurohomes.com.vn/wp-content/uploads/2020/04/anh-bo-noi-bep-tu-Hafele-6-mon.jpg'),
+(19, 19, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXtWnxTBN9a9dr13THCBpV-hACjP3IeMflIw&usqp=CAU'),
+(20, 19, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQobHQaDcmk8YbqIeB4CYyDv5uC-uOuo-D26w&usqp=CAU');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khachhang`
+-- Table structure for table `khachhang`
 --
 
 CREATE TABLE `khachhang` (
   `id_kh` int(11) NOT NULL,
   `ten_kh` varchar(50) NOT NULL,
   `id_tk` int(11) NOT NULL,
-  `Ho_ten` varchar(50) NOT NULL,
-  `Ngay_sinh` date NOT NULL,
-  `gioi_tinh` varchar(10) NOT NULL,
   `diachi` varchar(50) NOT NULL,
-  `sdt` varchar(20) NOT NULL,
-  `ngaydangky` date NOT NULL
+  `sdt` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `khachhang`
+--
+
+INSERT INTO `khachhang` (`id_kh`, `ten_kh`, `id_tk`, `diachi`, `sdt`) VALUES
+(1, 'manh', 10, 'hn', '03333333333'),
+(2, 'manh nguyen', 9, 'hn', '01111111111'),
+(3, 'ben', 11, 'n02 chùa láng láng thượng đống đa hà nội việt nam', '0154777777'),
+(4, 'cycle', 12, 'n02 chùa láng láng thượng đống đa hà nội việt nam', '0154777777');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nhom_sp`
+-- Table structure for table `nhom_sp`
 --
 
 CREATE TABLE `nhom_sp` (
@@ -146,7 +185,7 @@ CREATE TABLE `nhom_sp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `nhom_sp`
+-- Dumping data for table `nhom_sp`
 --
 
 INSERT INTO `nhom_sp` (`id_Nsp`, `name_sp`) VALUES
@@ -155,7 +194,7 @@ INSERT INTO `nhom_sp` (`id_Nsp`, `name_sp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sanpham`
+-- Table structure for table `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -171,11 +210,11 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `sanpham`
+-- Dumping data for table `sanpham`
 --
 
 INSERT INTO `sanpham` (`id_sp`, `id_Dsp`, `ten_sp`, `mo_ta`, `xuat_xu`, `gia_sp`, `soluong_ton`, `anh_sp`, `soluotxem`) VALUES
-(16, 10, 'Tủ Lạnh SAMSUNG Inverter Family Hub 641L RS64T5', 'Sản phẩm phân phối chính hãng tại moon house\r\nSản phẩm bảo đảm an toàn và còn hạn sử dụng', 'TP. Hồ Chí Minh', 34990000, 100, 'https://hangdienmaygiare.com/images/products/2019/09/03/large/tu-lanh-panasonic-550-lit-nr-dz600gkvn', 90),
+(16, 10, 'Tủ Lạnh SAMSUNG Inverter Family Hub 641L RS64T5', 'Sản phẩm phân phối chính hãng tại moon house\r\nSản phẩm bảo đảm an toàn và còn hạn sử dụng', 'TP. Hồ Chí Minh', 34990000, 100, 'https://www.electrolux.vn/globalassets/d2c-vn/refrigerators/vn-d2c-ehe6879a-b_angl_cl-1500x1500.png?', 90),
 (17, 5, 'CHẢO ĐÁ ĐÁY SUNHOUSE SHG1228MMA', 'Chảo Chống Dính Happy Time Size 28 28cmđược Nhập Khẩu Nguyên Chiếc Từ Việt Nam', 'TP. Hồ Chí Minh', 2990000, 1000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzAC7rmDIh8FjuLfkfY1Wr3k3m_kl2GGdYig&usqp=CAU', 150),
 (18, 2, 'Bộ nồi Inox 3 đáy GOLDSUN SHG2303MSA', 'Giới Thiệu Bộ Nồi Chảo Inox 304 3 Lớp Đáy Liền Cao Cấp Elmich Trimax El3742 - 4 Chiếc Size 18cm, 20cm, 26cm Và Chảo 26cm', 'Hà Nội', 490000, 2000, 'https://tvshopping.vn/image/cache/data/Anh%20gia%20dung/sh891-1200x1200.jpg', 190),
 (19, 2, 'BỘ NỒI 6 SẢN PHẨM 10180-C MEYER - ANH', 'Bộ Xoong Nồi Từ Có 13 Món Gồm: 1 Chảo 21,5 Có Chống Dính 1 Chảo 25,4 Có Chống Dính 1 Chảo 30,4 Có Chống Dính 1 Nồi Bé 0,9l ', 'TP. Hồ Chí Minh', 1900000, 10000, 'https://i0.wp.com/hangnhattoday.com/wp-content/uploads/2019/09/CIRCULON.jpg?resize=600%2C570&ssl=1', 200),
@@ -186,7 +225,7 @@ INSERT INTO `sanpham` (`id_sp`, `id_Dsp`, `ten_sp`, `mo_ta`, `xuat_xu`, `gia_sp`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tai_khoan`
+-- Table structure for table `tai_khoan`
 --
 
 CREATE TABLE `tai_khoan` (
@@ -197,19 +236,22 @@ CREATE TABLE `tai_khoan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `tai_khoan`
+-- Dumping data for table `tai_khoan`
 --
 
 INSERT INTO `tai_khoan` (`id_tk`, `email`, `pass`, `quyendn`) VALUES
 (6, 'thanh@gmail.com', '2309eaf753d1d8d19589a20d519f080b', 0),
 (7, 'root@gmail.com', '5690dddfa28ae085d23518a035707282', 1),
 (8, 'phong@gmail.com', 'e919fa7f54ef5892792d9aa0d2f3ce7c', 0),
-(9, 'nhat@gmail.com', '33f284c9c8cf9424d891f12fb8714c2b', 0);
+(9, 'nhat@gmail.com', '33f284c9c8cf9424d891f12fb8714c2b', 0),
+(10, 'toanquyen16112@gmail.com', 'c9f8a04f11069aa2ec01ebfd9ff421f8', 0),
+(11, 'manhnguyen16112@gmail.com', 'c9f8a04f11069aa2ec01ebfd9ff421f8', 0),
+(12, 'test@gmail.com', 'c9f8a04f11069aa2ec01ebfd9ff421f8', 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thanhtoan`
+-- Table structure for table `thanhtoan`
 --
 
 CREATE TABLE `thanhtoan` (
@@ -222,11 +264,11 @@ CREATE TABLE `thanhtoan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `binhluansp`
+-- Indexes for table `binhluansp`
 --
 ALTER TABLE `binhluansp`
   ADD PRIMARY KEY (`id_Bl`),
@@ -234,7 +276,7 @@ ALTER TABLE `binhluansp`
   ADD KEY `fk_tk` (`id_tk`);
 
 --
--- Chỉ mục cho bảng `chitiet_dh`
+-- Indexes for table `chitiet_dh`
 --
 ALTER TABLE `chitiet_dh`
   ADD PRIMARY KEY (`id_ctdh`),
@@ -242,54 +284,54 @@ ALTER TABLE `chitiet_dh`
   ADD KEY `id_sp` (`id_sp`);
 
 --
--- Chỉ mục cho bảng `danhmucsp`
+-- Indexes for table `danhmucsp`
 --
 ALTER TABLE `danhmucsp`
   ADD PRIMARY KEY (`id_Dsp`),
   ADD KEY `id_Nsp` (`id_Nsp`);
 
 --
--- Chỉ mục cho bảng `donhang`
+-- Indexes for table `donhang`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`id_dh`),
   ADD KEY `id_kh` (`id_kh`);
 
 --
--- Chỉ mục cho bảng `image`
+-- Indexes for table `image`
 --
 ALTER TABLE `image`
   ADD PRIMARY KEY (`id_i`),
   ADD KEY `id_sp` (`id_sp`);
 
 --
--- Chỉ mục cho bảng `khachhang`
+-- Indexes for table `khachhang`
 --
 ALTER TABLE `khachhang`
   ADD PRIMARY KEY (`id_kh`),
   ADD KEY `id_tk` (`id_tk`);
 
 --
--- Chỉ mục cho bảng `nhom_sp`
+-- Indexes for table `nhom_sp`
 --
 ALTER TABLE `nhom_sp`
   ADD PRIMARY KEY (`id_Nsp`);
 
 --
--- Chỉ mục cho bảng `sanpham`
+-- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`id_sp`),
   ADD KEY `id_Dsp` (`id_Dsp`);
 
 --
--- Chỉ mục cho bảng `tai_khoan`
+-- Indexes for table `tai_khoan`
 --
 ALTER TABLE `tai_khoan`
   ADD PRIMARY KEY (`id_tk`);
 
 --
--- Chỉ mục cho bảng `thanhtoan`
+-- Indexes for table `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
   ADD PRIMARY KEY (`id_tt`),
@@ -297,119 +339,119 @@ ALTER TABLE `thanhtoan`
   ADD KEY `id_dh` (`id_dh`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `binhluansp`
+-- AUTO_INCREMENT for table `binhluansp`
 --
 ALTER TABLE `binhluansp`
   MODIFY `id_Bl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
--- AUTO_INCREMENT cho bảng `chitiet_dh`
+-- AUTO_INCREMENT for table `chitiet_dh`
 --
 ALTER TABLE `chitiet_dh`
   MODIFY `id_ctdh` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `danhmucsp`
+-- AUTO_INCREMENT for table `danhmucsp`
 --
 ALTER TABLE `danhmucsp`
   MODIFY `id_Dsp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT cho bảng `donhang`
+-- AUTO_INCREMENT for table `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `id_dh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_dh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT cho bảng `image`
+-- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `id_i` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_i` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT cho bảng `khachhang`
+-- AUTO_INCREMENT for table `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `id_kh` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `nhom_sp`
+-- AUTO_INCREMENT for table `nhom_sp`
 --
 ALTER TABLE `nhom_sp`
   MODIFY `id_Nsp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `sanpham`
+-- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
   MODIFY `id_sp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT cho bảng `tai_khoan`
+-- AUTO_INCREMENT for table `tai_khoan`
 --
 ALTER TABLE `tai_khoan`
-  MODIFY `id_tk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_tk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT cho bảng `thanhtoan`
+-- AUTO_INCREMENT for table `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
   MODIFY `id_tt` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `binhluansp`
+-- Constraints for table `binhluansp`
 --
 ALTER TABLE `binhluansp`
   ADD CONSTRAINT `binhluansp_ibfk_1` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`),
   ADD CONSTRAINT `fk_tk` FOREIGN KEY (`id_tk`) REFERENCES `tai_khoan` (`id_tk`);
 
 --
--- Các ràng buộc cho bảng `chitiet_dh`
+-- Constraints for table `chitiet_dh`
 --
 ALTER TABLE `chitiet_dh`
   ADD CONSTRAINT `chitiet_dh_ibfk_1` FOREIGN KEY (`id_dh`) REFERENCES `donhang` (`id_dh`),
   ADD CONSTRAINT `chitiet_dh_ibfk_2` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`);
 
 --
--- Các ràng buộc cho bảng `danhmucsp`
+-- Constraints for table `danhmucsp`
 --
 ALTER TABLE `danhmucsp`
   ADD CONSTRAINT `danhmucsp_ibfk_1` FOREIGN KEY (`id_Nsp`) REFERENCES `nhom_sp` (`id_Nsp`);
 
 --
--- Các ràng buộc cho bảng `donhang`
+-- Constraints for table `donhang`
 --
 ALTER TABLE `donhang`
   ADD CONSTRAINT `donhang_ibfk_1` FOREIGN KEY (`id_kh`) REFERENCES `khachhang` (`id_kh`);
 
 --
--- Các ràng buộc cho bảng `image`
+-- Constraints for table `image`
 --
 ALTER TABLE `image`
   ADD CONSTRAINT `image_ibfk_1` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`);
 
 --
--- Các ràng buộc cho bảng `khachhang`
+-- Constraints for table `khachhang`
 --
 ALTER TABLE `khachhang`
   ADD CONSTRAINT `khachhang_ibfk_1` FOREIGN KEY (`id_tk`) REFERENCES `tai_khoan` (`id_tk`);
 
 --
--- Các ràng buộc cho bảng `sanpham`
+-- Constraints for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`id_Dsp`) REFERENCES `danhmucsp` (`id_Dsp`);
 
 --
--- Các ràng buộc cho bảng `thanhtoan`
+-- Constraints for table `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
   ADD CONSTRAINT `thanhtoan_ibfk_1` FOREIGN KEY (`id_tk`) REFERENCES `tai_khoan` (`id_tk`),

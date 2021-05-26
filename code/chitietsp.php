@@ -25,7 +25,24 @@
                 
                 
 
+   
               }
+   
+              $img_link=array();
+              $i = 0;
+              $query1 = mysqli_query($conn,"SELECT image FROM image WHERE id_sp = ".$_GET["sanpham"]);
+              while( $result1 = $query1 -> fetch_assoc()) {
+                $img_link[$i] = $result1['image'];
+                $i = $i + 1;
+               
+                 
+  
+                
+
+   
+              }
+
+              
         
   
 
@@ -81,15 +98,15 @@
           <div class="col-5">
             <div class="product-price__image">
               <div class="image__main">
-              <img src="assets/img/<?php echo $img;?>" alt="" id="main_image">
+              <img src="<?php echo $img;?>" alt="" id="main_image">
               </div>
               
                 <div class="list-item">
-                    <div class="item"><img src="assets/img/<?php echo $img;?>" onclick="click_image(this)"></div>
-                    <div class="item"><img src="assets/img/<?php echo $img;?>" onclick="click_image(this)"></div>
-                    <div class="item"><img src="assets/img/<?php echo $img;?>" onclick="click_image(this)"></div>
-                    <div class="item"><img src="assets/img/<?php echo $img;?>" onclick="click_image(this)"></div>
-                    <div class="item"><img src="assets/img/<?php echo $img;?>" onclick="click_image(this)"></div>                 
+                    <div class="item"><img src="<?php echo $img;?>" onclick="click_image(this)"></div>
+                    <div class="item"><img src="<?php echo $img_link[0]?>" onclick="click_image(this)"></div>
+                    <div class="item"><img src="<?php echo $img_link[1]?>" onclick="click_image(this)"></div>
+                    <div class="item"><img src="<?php echo $img_link[2]?>" onclick="click_image(this)"></div>
+                    <div class="item"><img src="<?php echo $img_link[3]?>" onclick="click_image(this)"></div>                 
                 </div>        
           </div>
           </div>
@@ -164,7 +181,7 @@
      
       
 
-    <script src="assets/main.js"></script>
+    <script src="asset/main.js"></script>
 
     
     <?php include 'cmt.php';?>

@@ -1,4 +1,6 @@
-<?php include 'header.php'?>
+<?php 
+require('connect.php');
+include 'header.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,15 +33,11 @@
                 
             </ul>
         </div>
-
-
         <div class="product-list c-10">
             <div class="row">
                 <?php
-                    include 'connect.php';
-                    $sql = 'select * from sanpham where id_Dsp = '.$_GET["danhmucsp"].'  ';
+                    $sql = 'select * from sanpham where id_Dsp = '.$_GET["danhmucsp"].' ';
                     $result = $conn->query($sql);
-
                     while($row = $result->fetch_assoc()) {
                         $idsp=$row['id_sp'];
                         echo '
@@ -70,9 +68,6 @@
                 ?>
             </div>
         </div>
-
-
-
     </div>
     <?php include 'footer.php'?>
 </body>
