@@ -1,7 +1,6 @@
 .container_a{
     overflow: hidden;
-    background-color: darkslategray;
-    color: blanchedalmond;
+    background-color: rgb(245, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
   
 }
@@ -25,7 +24,7 @@
 
 .footer_a{
     text-decoration: none;
-    color: white;
+    color: black;
 }
 .footer_ul{
     list-style-type: none;
@@ -35,7 +34,7 @@
 .footer_information footer_a{
     border: 1px solid springgreen;
     border-radius: 30px;
-    color: azure;
+    color: black;
     background-color: rgb(4, 12, 12);
 }
 

@@ -1,4 +1,4 @@
 <?php  
-    $conn= mysqli_connect('localhost','root','','cnpm');
+    $conn= mysqli_connect('localhost','root','','cuahangbandogiadung');
     
 ?>

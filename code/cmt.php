@@ -31,11 +31,13 @@ $user=(isset($_SESSION['user'])?$_SESSION['user']:[]);
 <!--enctype="multipart/form-data"  -->
     <form action="" method ="POST" enctype="multipart/form-data" >
     <div id="container_cmt">
-        <hr style="width: 60%;">
-        <h1>Đánh giá sản phẩm</h1>
+        
         <div>     
             <?php
-            ?>
+            if(isset($_GET['id_tk']))
+           echo' 
+            <hr style="width: 60%;">
+            <h1>Đánh giá sản phẩm</h1>
             <div class = "radio"><pre>1 Sao  </pre><input type="radio" class= "cmt_radio" name="evaluate" value="1"></div>
             <div class = "radio"><pre>2 Sao  </pre><input type="radio" class= "cmt_radio" name="evaluate" value="2"></div>
             <div class = "radio"><pre>3 Sao  </pre><input type="radio" class= "cmt_radio" name="evaluate" value="3"></div>
@@ -47,7 +49,8 @@ $user=(isset($_SESSION['user'])?$_SESSION['user']:[]);
             <br>
             <br>
             <input type="text" style="width:70%" class= "cmt_text" name="comment1" placeholder="Nhập bình luận">
-            <input type="submit" class="button" name ="save" value="Bình luận"> 
+            <input type="submit" class="button" name ="save" value="Bình luận"> ';
+            ?>
         </div>
         <br>
         <h1>Tổng hợp bình luận</h1>
@@ -75,6 +78,15 @@ $user=(isset($_SESSION['user'])?$_SESSION['user']:[]);
                 }
                 echo '<div class="element_bl"><a href="img.php?'.$getid.'&sanpham='.$listcm["id_sp"].'&id_Bl='.$listcm["id_Bl"].'"><img style="width: 100px; height: 100px;filter: drop-shadow(0 0 5px white);" src="imgcmt/'.$listcm['hinhanh'].'"></a></div><br><br>'; 
                 echo '<div class="element_bl" style="color:rgba(0,0,0,.54)">'.$listcm['ngaybinhluan'].'</div>';
+                $sqlph='select NDph from phanhoibl where id_Bl='.$listcm["id_Bl"];
+                if(executeResuft($sqlph)){
+                    $listph=executeResuft($sqlph);
+                    foreach($listph as $lph){
+                       
+                    echo'<div class="feebback"><pre>           <h3>        Phản hồi của shop:</h3>
+                          <p>                   <b>Moonhouse</b>: '.$lph["NDph"].'</p>                  
+                    </pre>
+                    </div>';}}
                 echo '<hr style="width: 100%;">';
                 echo '<br>';
             }  
