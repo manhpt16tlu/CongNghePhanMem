@@ -42,6 +42,21 @@ require('connect.php');
         font-family: 'Roboto', sans-serif;
         box-sizing: border-box;
     }
+    div.recommend-list
+    {
+        background-color:#F5F5F5;
+    }
+    div.recommend-item
+    {
+        background-color:white;
+        box-shadow: 0.5px 0.5px 0.5px  #999999;
+        
+    }
+    div.recommend-item:hover
+    {
+        border:1px solid red;
+    }
+ 
 </style>
 
 <body>
@@ -93,7 +108,7 @@ require('connect.php');
                                                 <i class="icon-star fas fa-star"></i>
                                                 <i class="icon-star fas fa-star"></i>
                                             </div>
-                                            <div class="recommend-item-sold-text c-5">Đã xem '.$row['soluotxem'].'</div>
+                                            <div class="recommend-item-sold-text c-5">Đã bán '.$row['daban'].'</div>
                                         </div>
                                         <div class="recommend-item-address">'.$row['xuat_xu'].'</div>
                                     </a>
@@ -118,7 +133,7 @@ require('connect.php');
                                                 <i class="icon-star fas fa-star"></i>
                                                 <i class="icon-star fas fa-star"></i>
                                             </div>
-                                            <div class="recommend-item-sold-text c-5">Đã xem '.$row['soluotxem'].'</div>
+                                            <div class="recommend-item-sold-text c-5">Đã xem '.$row['daban'].'</div>
                                         </div>
                                         <div class="recommend-item-address">'.$row['xuat_xu'].'</div>
                                     </a>

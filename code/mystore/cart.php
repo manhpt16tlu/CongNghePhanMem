@@ -6,12 +6,14 @@ if(!isset($_SESSION['user']))
  header('location: login.php');
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST")
+else
 {
     if(isset($_POST['add-to-cart']))
     {
+      
         if(isset($_SESSION['cart']))
         {
+         
             $item_array_id = array_column($_SESSION['cart'],'item_id');
             if(!in_array($_POST['idsp'],$item_array_id))
             {
@@ -23,13 +25,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 'item_price' => $_POST["price"],
                 'item_img' => $_POST['img']
             );
-            $_SESSION['cart'][$count] = $item_array;   
-            echo '<script>alert("thêm vào giỏ hàng thành công")</script>';
+            if(!isset( $_SESSION['cart'][$count - 1]))
+            {
+            $_SESSION['cart'][$count - 1] = $item_array; 
+            }
+            else if(!isset( $_SESSION['cart'][$count + 1]))
+            {
+            $_SESSION['cart'][$count + 1] = $item_array; 
+            }
+            else
+            {
+              $_SESSION['cart'][$count] = $item_array; 
+            }
+            echo '<script>alert("đã thêm vào giỏ hàng")</script>';
+            echo '<script>window.location="index.php"</script>';
             }
             else
             {
                
                 echo '<script>alert("sản phẩm đã có trong giỏ hàng,không thể thêm")</script>';
+                echo '<script>window.location="index.php"</script>';
             }
 
         }
@@ -44,12 +59,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
             );
             $_SESSION['cart'][0] = $item_array;
+            echo '<script>alert("đã thêm vào giỏ hàng")</script>';
+            echo '<script>window.location="index.php"</script>';
 
         }
        
     }
  
-   
+    if(isset($_GET['action']))
+                {
+                    if($_GET['action'] == 'delete')
+                    {
+                        foreach($_SESSION['cart'] as $keys => $values)
+                        {
+                            if($values['item_id'] == $_GET['id'])
+                            {
+                               
+                              unset($_SESSION['cart'][$keys]);
+                              echo '<script>alert("Xóa sản phẩm thành công")</script>';
+                              echo '<script>window.location="index.php"</script>';
+                            }
+                        }
+                    }
+                }
+
 }
 
 ?>
@@ -59,7 +92,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Giỏ hàng</title>
+    <link rel="shortcut icon" href="asset/img/1200px-Shopee_logo.svg.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/cart.css">
@@ -162,7 +196,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 <div class="info">
  <h2>Điền thông tin của bạn</h2>
- <form action="success.php" method = "POST">
+ <form action="success.php" method = "POST" style="margin: 0 0 10px 0;">
   <div class="form-group">
     <label for="name">Họ tên:</label>
     <input type="text" class="form-control" name = "ten" id="ten" placeholder="Nhập tên của bạn" required>
@@ -181,6 +215,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   <input type="hidden" name = "tong">
   <button type="submit" name = "submit-dathang" class="btn btn-primary">Đặt hàng</button>
 </form>
+
+
+
+<a href="cart.php"><button type="button" class="btn btn-primary">Quay về giỏ hàng</button></a>
+<a href="index.php"><button type="button" class="btn btn-primary">Quay về trang sản phẩm</button></a>
 </div>
 <?php
 
@@ -245,22 +284,7 @@ $idtk =  $user['id_tk'];
             if(!empty($_SESSION['cart']))
                 {
                
-                if(isset($_GET['action']))
-                {
-                    if($_GET['action'] == 'delete')
-                    {
-                        foreach($_SESSION['cart'] as $keys => $values)
-                        {
-                            if($values['item_id'] == $_GET['id'])
-                            {
-                               
-                              unset($_SESSION['cart'][$keys]);
-                              
-                            }
-                        }
-                    }
-                }
-
+               
 
                 
                 foreach($_SESSION['cart'] as $keys => $values)
@@ -275,7 +299,7 @@ $idtk =  $user['id_tk'];
             <tr>
             <td>
               <div class="cart-info display-cart">
-                <img src="assets/img/<?php echo $values['item_img'];?>" alt="" />
+                <img src="<?php echo $values['item_img'];?>" alt="" />
                 <div>
                   <p style="font-size:120%;"><?php echo $values['item_name']; ?></p>
                   <small style="font-size:120%;">Giá <?php echo $values['item_price']; ?>đ</small>
@@ -389,7 +413,7 @@ for(i = 0;i < display_cart.length;i++)
    $mota = "";
    $count = count($_SESSION['cart']);
    $str = substr($_POST['soluong'],-($count),$count);
-  
+  $_SESSION['tt-donhang'] = array();//tạo mảng session lưu thông tin đơn hàng để trừ đi số lượng mua
   
 
    echo '<table style="width:75%">
@@ -410,9 +434,9 @@ for(i = 0;i < display_cart.length;i++)
      /*echo "<span class='content'>[".$str[0]."]</span>";
     
      echo "-";
-     echo "<span class='content'>".$values['item_name']."</span>";
+     echo "<span class='content'>".$values['item_name']."</span>";*/
      $mota =    $mota." [".$str[0]."] ".$values['item_name']." ";
-     */
+     $_SESSION['tt-donhang'][$values['item_id']] = $str[0];
     echo '<tr>
     <td>'.$values['item_name'].'</td>
     
@@ -423,10 +447,12 @@ for(i = 0;i < display_cart.length;i++)
      $str = substr($str,1);
    }
    echo  '</table>';
- 
+  
    echo "<h2 style='text-align:center;'> Tổng tiền là: ".$_POST['tong']."</h2>";
-   $_SESSION['tongtien'] = $_POST['tong'];
+  
+   $_SESSION['tongtien'] = $_POST['tong'];//biến lưu tổng tiền 
    $_SESSION['mota'] = $mota;
+   
   }
  
 }
