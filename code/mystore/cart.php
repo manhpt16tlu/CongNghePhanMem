@@ -8,15 +8,81 @@ if(!isset($_SESSION['user']))
 
 else
 {
+      //lấy giỏ hàng trong csdl
+       $user=(isset($_SESSION['user'])?$_SESSION['user']:[]);
+       $idtk =  $user['id_tk'];//id tài khoản
+      
+       $id_gh = "";
+       //lấy id giỏ hàng
+       $sql_idgh = "SELECT id_gh FROM gio_hang WHERE id_tk = '$idtk'";
+       $result_idgh = $conn->query($sql_idgh);
+       while($row = mysqli_fetch_assoc($result_idgh)) {
+        $id_gh = $row['id_gh'];
+       }
+      //lấy sản phẩm trong csdl vào giỏ hàng
+      $sql_sp = "SELECT id_sp FROM chitiet_gh WHERE id_gh = '$id_gh'";
+       $result_sp = $conn->query($sql_sp);
+
+       while($row = mysqli_fetch_assoc($result_sp)) {
+         $idsp = $row['id_sp'];
+         //lấy ra chi tiết sản phẩm
+         $sql_ttsp = "SELECT * FROM sanpham WHERE id_sp = '$idsp'";
+         $result_ttsp = $conn->query($sql_ttsp);
+       while($row = mysqli_fetch_assoc($result_ttsp)) {
+         
+         $item_array = array(
+          'item_id'=> $idsp,
+          'item_name' => $row['ten_sp'],
+          'item_price' => $row['gia_sp'],
+          'item_img' =>  $row['anh_sp']
+      );
+      if(!isset($_SESSION['cart']))
+      {
+        $_SESSION['cart'][0] = $item_array;
+      }
+       else
+       {
+         
+        $item_array_id = array_column($_SESSION['cart'],'item_id');
+        if(!in_array($idsp,$item_array_id))
+        {
+            $count = count($_SESSION['cart']);     
+            
+            if(!isset( $_SESSION['cart'][$count - 1]))
+            {
+            $_SESSION['cart'][$count - 1] = $item_array; 
+            }
+            else if(!isset( $_SESSION['cart'][$count + 1]))
+            {
+            $_SESSION['cart'][$count + 1] = $item_array; 
+            }
+            else
+            {
+              $_SESSION['cart'][$count] = $item_array; 
+            }
+            
+        }
+       }
+
+
+        
+       
+       }
+
+      }
+
     if(isset($_POST['add-to-cart']))
     {
-      
+      $idsp_post = $_POST["idsp"];
         if(isset($_SESSION['cart']))
         {
          
             $item_array_id = array_column($_SESSION['cart'],'item_id');
             if(!in_array($_POST['idsp'],$item_array_id))
             {
+
+
+
                 $count = count($_SESSION['cart']);
                 
             $item_array = array(
@@ -37,8 +103,13 @@ else
             {
               $_SESSION['cart'][$count] = $item_array; 
             }
+
+           //thêm vào giỏ hàng trong csdl
+            if($conn->query("INSERT INTO chitiet_gh VALUES ('$id_gh','$idsp_post')") === TRUE) 
+            {
             echo '<script>alert("đã thêm vào giỏ hàng")</script>';
             echo '<script>window.location="index.php"</script>';
+            }
             }
             else
             {
@@ -58,10 +129,15 @@ else
 
 
             );
+
+            
             $_SESSION['cart'][0] = $item_array;
+            if($conn->query("INSERT INTO chitiet_gh VALUES ('$id_gh','$idsp_post')") === TRUE) 
+            {
             echo '<script>alert("đã thêm vào giỏ hàng")</script>';
             echo '<script>window.location="index.php"</script>';
-
+            }
+            
         }
        
     }
@@ -74,10 +150,14 @@ else
                         {
                             if($values['item_id'] == $_GET['id'])
                             {
-                               
+                              $idsp_delete = $_GET['id'];
                               unset($_SESSION['cart'][$keys]);
+                              $id_delete = $_GET['id'];
+                              if ($conn->query("DELETE FROM chitiet_gh WHERE (id_sp='$idsp_delete' and id_gh='$id_gh')") === TRUE) {
+                             
                               echo '<script>alert("Xóa sản phẩm thành công")</script>';
                               echo '<script>window.location="index.php"</script>';
+                              }
                             }
                         }
                     }

@@ -1,8 +1,8 @@
-<?php 
-  include('header.php');
-  include('../connect.php');
+<?php
 
- 
+include ('header.php');
+include ('../connect.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +52,9 @@
 </head>
 <body>
 <h2>Danh sách sản phẩm</h2>
+
+
+
 <table class="table table-hover">
     <thead>
       <tr>
@@ -65,46 +68,46 @@
         <th class="col-sm-2">Action</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="danhsach">
     <?php
-     require_once('logic-sanpham.php');?>
+require_once ('logic-sanpham.php'); ?>
      <?php
-    
-     if(isset($_SESSION['alert']))
-     {
-       echo '<script>alert("'.$_SESSION['alert'].'")</script>';
-       unset($_SESSION['alert']);
-     }
-     
-     ?>
+if (isset($_SESSION['alert']))
+{
+    echo '<script>alert("' . $_SESSION['alert'] . '")</script>';
+    unset($_SESSION['alert']);
+}
+
+?>
        
         
          
      
      
-      </div> 
+     
        
      
     
 
 <?php
-    $sql = "SELECT id_sp,ten_sp,mo_ta,gia_sp,soluong_ton,anh_sp,daban FROM sanpham";
-    $result = $conn->query($sql);
-      while($row = $result->fetch_assoc()) {
-        $idsp = $row['id_sp'];
-        echo '<tr>
+$sql = "SELECT id_sp,ten_sp,mo_ta,gia_sp,soluong_ton,anh_sp,daban FROM sanpham";
+$result = $conn->query($sql);
+while ($row = $result->fetch_assoc())
+{
+    $idsp = $row['id_sp'];
+    echo '<tr>
     
-        <td>'.$row['id_sp'].'<div></div></td>
-        <td class="setwidth concat"><div>'.$row['ten_sp'].'</div></td>
-        <td class="setwidth concat"><div>'.$row['mo_ta'].'</div></td>
-        <td class="setwidth concat"><div>'.$row['gia_sp'].'</div></td>
-        <td class="setwidth concat"><div>'.$row['soluong_ton'].'</div></td>
-        <td class="setwidth concat"><div>'.$row['daban'].'</div></td>
-        <td class="setwidth concat"><div>'.$row['anh_sp'].'</div></td>
-        <td><a href="sanpham.php?edit=true&id='.$idsp.'"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View and Edit">
+        <td>' . $row['id_sp'] . '<div></div></td>
+        <td class="setwidth concat"><div>' . $row['ten_sp'] . '</div></td>
+        <td class="setwidth concat"><div>' . $row['mo_ta'] . '</div></td>
+        <td class="setwidth concat"><div>' . $row['gia_sp'] . '</div></td>
+        <td class="setwidth concat"><div>' . $row['soluong_ton'] . '</div></td>
+        <td class="setwidth concat"><div>' . $row['daban'] . '</div></td>
+        <td class="setwidth concat"><div>' . $row['anh_sp'] . '</div></td>
+        <td><a href="sanpham.php?edit=true&id=' . $idsp . '"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View and Edit">
         <i class="fas fa-cogs"></i>
       </button></a>
-      <a href="logic-sanpham.php?delete=true&id='.$idsp.'"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+      <a href="logic-sanpham.php?delete=true&id=' . $idsp . '"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete">
       <i class="fas fa-trash"></i>
       </button></a>
       
@@ -112,61 +115,90 @@
       
         
       </tr>';
-      }
-  
-    
-    
-    
-    ?>
+}
+
+?>
       
     </tbody>
   </table>
+<!-- form lọc sản phẩm -->
 
+<div class="container">
+<h4>Lọc sản phẩm</h4>
+<div class="row">
+  <!-- <form action=""> -->
+  
+  <div class="form-group col-1">
+    <label for=""></label>
+    <input type="text" class="form-control timkiem" id="" placeholder="ID">
+  </div>
+  <div class="form-group col-3">
+    <label for=""></label>
+    <input type="text" class="form-control timkiem" id="" placeholder="Nhập tên sản phẩm">
+  </div>
+<!-- 
+  <button type="button submit" class="btn btn-primary">Lọc</button>
+
+</form> -->
+</div>  
+</div>
+<hr style="width:90%;text-align:center;margin:30px auto;">
 <!-- form để thêm sản phẩm hoặc sửa -->
 <div class="container">
 <div class="row">
 <div class="col-md-8">
 <form action="logic-sanpham.php" method="post">
-<input type="hidden" class="form-control" value = "<?=$id_view?>"  name="id_sp">
+<input type="hidden" class="form-control" value = "<?=$id_view
+?>"  name="id_sp">
   <div class="form-group">
     <label for="">Tên sản phẩm</label>
-    <input type="text" class="form-control" id="" value = "<?=$tensp?>" required name="tensp">
+    <input type="text" class="form-control" id="" value = "<?=$tensp
+?>" required name="tensp">
   </div>
   <div class="form-group col-2">
   <label for="">Danh mục</label>
-  <input type="text" class="form-control" id="" value = "<?=$dmuc?>" required name="danhmuc">
+  <input type="text" class="form-control" id="" value = "<?=$dmuc
+?>" required name="danhmuc">
   </div>
   
   <div class="form-group">
     <label for="">Mô tả:</label>
-    <input type="text" class="form-control" id="" value = "<?=$mota?>" required name="mota">
+    <input type="text" class="form-control" id="" value = "<?=$mota
+?>" required name="mota">
   </div>
   <div class="form-group  col-5">
     <label for="">Xuất xứ</label>
-    <input type="text" class="form-control" id="" value = "<?=$xxu?>" required name="xuatxu">
+    <input type="text" class="form-control" id="" value = "<?=$xxu
+?>" required name="xuatxu">
   </div>
   <div class="form-group col-2">
     <label for="">Giá</label>
-    <input type="text" class="form-control" id="" value = "<?=$gia?>" required name="gia">
+    <input type="text" class="form-control" id="" value = "<?=$gia
+?>" required name="gia">
   </div>
   <div class="form-group col-2">
     <label for="">Còn lại</label>
-    <input type="text" class="form-control" id="" value = "<?=$conlai?>" required name="conlai">
+    <input type="text" class="form-control" id="" value = "<?=$conlai
+?>" required name="conlai">
   </div>
   <div class="form-group col-2">
     <label for="">Đã bán</label>
-    <input type="text" class="form-control" id="" value = "<?=$daban?>" required name="daban">
+    <input type="text" class="form-control" id="" value = "<?=$daban
+?>" required name="daban">
   </div>
   <div class="form-group">
     <label for="">Link ảnh</label>
-    <input type="text" class="form-control" id="" value = "<?=$imglink?>" required name="link">
+    <input type="text" class="form-control" id="" value = "<?=$imglink
+?>" required name="link">
   </div>
   
-<?php if ($edit == true):?>
+<?php if ($edit == true): ?>
   <button type="button submit" class="btn btn-primary" name = "edit-btn">Sửa</button>
- <?php else:?>  
+ <?php
+else: ?>  
   <button type="button submit" class="btn btn-primary" name = "add-btn">Thêm</button>
-    <?php endif  ?>
+    <?php
+endif ?>
  
 </form>
 </div>
@@ -183,21 +215,23 @@
     </thead>
     <tbody>
      <?php
-     $sql_danhmuc = "SELECT id_Dsp,name_Nsp FROM danhmucsp";
-     $result = $conn->query($sql_danhmuc);
-       while($row = $result->fetch_assoc()) {
-         echo '<tr><th>'.$row['id_Dsp'].'</th>
-                   <th>'.$row['name_Nsp'].'</th>
+$sql_danhmuc = "SELECT id_Dsp,name_Nsp FROM danhmucsp";
+$result = $conn->query($sql_danhmuc);
+while ($row = $result->fetch_assoc())
+{
+    echo '<tr><th>' . $row['id_Dsp'] . '</th>
+                   <th>' . $row['name_Nsp'] . '</th>
          
          
          </tr>';
-       }
-     ?>
+}
+?>
     </tbody>
   </table>
 </div>
 </div>
 </div>
+<script src="../asset/jquery-3.6.0.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -206,6 +240,21 @@
   $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
+
+
+
+ ///////////////////////////////////////
+ $('.timkiem').keyup(function(){
+   var key = $('.timkiem').val();
+   $.post('sanpham_ajax.php',{data:key},function(data) {
+     $('.danhsach').html(data);
+     
+   })
+
+ })
+
+
+
   </script>
 </body>
 </html>
