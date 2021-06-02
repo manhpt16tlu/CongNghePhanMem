@@ -37,14 +37,14 @@ include 'connect.php';
      }
      /* cập nhật số lượng*/
      foreach ($_SESSION['tt-donhang'] as $key => $value) {
-      $sql1 = "SELECT soluong_ton,daban FROM sanpham WHERE id_sp = '$key'";
+      $sql1 = "SELECT conlai,daban FROM khohang WHERE id_sp = '$key'";
       $result = $conn->query($sql1);
       while($row = $result->fetch_assoc()) {
-            $slt = (int)$row['soluong_ton'] - (int)$value;
+            $slt = (int)$row['conlai'] - (int)$value;
             
             $dban = (int)$row['daban'] + (int)$value;
       }
-       $sql2 = "UPDATE sanpham SET soluong_ton='$slt',daban = '$dban' WHERE id_sp='$key'";
+       $sql2 = "UPDATE khohang SET conlai='$slt',daban = '$dban' WHERE id_sp='$key'";
        if ($conn->query($sql2) === TRUE) {       
       } 
       else

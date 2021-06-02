@@ -1,5 +1,5 @@
 <?php
-
+require_once ('logic-sanpham.php');
 include ('header.php');
 include ('../connect.php');
 
@@ -69,8 +69,7 @@ include ('../connect.php');
       </tr>
     </thead>
     <tbody class="danhsach">
-    <?php
-require_once ('logic-sanpham.php'); ?>
+
      <?php
 if (isset($_SESSION['alert']))
 {
@@ -90,19 +89,31 @@ if (isset($_SESSION['alert']))
     
 
 <?php
-$sql = "SELECT id_sp,ten_sp,mo_ta,gia_sp,soluong_ton,anh_sp,daban FROM sanpham";
+$sql = "SELECT id_sp,ten_sp,mo_ta,gia_sp,anh_sp FROM sanpham";
 $result = $conn->query($sql);
 while ($row = $result->fetch_assoc())
 {
     $idsp = $row['id_sp'];
+     //lấy số lượng trong kho hàng
+     $sql_kho = "SELECT * FROM khohang WHERE id_sp = '$idsp'";
+     $result_kho = $conn->query($sql_kho);
+     
+     
+       while($row_kho = $result_kho->fetch_assoc()) {
+         $daban = $row_kho['daban'];
+         $conlai = $row_kho['conlai'];
+       }
+
+
+     //////////////////////////////////
     echo '<tr>
     
         <td>' . $row['id_sp'] . '<div></div></td>
         <td class="setwidth concat"><div>' . $row['ten_sp'] . '</div></td>
         <td class="setwidth concat"><div>' . $row['mo_ta'] . '</div></td>
         <td class="setwidth concat"><div>' . $row['gia_sp'] . '</div></td>
-        <td class="setwidth concat"><div>' . $row['soluong_ton'] . '</div></td>
-        <td class="setwidth concat"><div>' . $row['daban'] . '</div></td>
+        <td class="setwidth concat"><div>' .$conlai. '</div></td>
+        <td class="setwidth concat"><div>' .$daban . '</div></td>
         <td class="setwidth concat"><div>' . $row['anh_sp'] . '</div></td>
         <td><a href="sanpham.php?edit=true&id=' . $idsp . '"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View and Edit">
         <i class="fas fa-cogs"></i>
@@ -128,13 +139,34 @@ while ($row = $result->fetch_assoc())
 <div class="row">
   <!-- <form action=""> -->
   
-  <div class="form-group col-1">
+  <!-- <div class="form-group col-1">
     <label for=""></label>
     <input type="text" class="form-control timkiem" id="" placeholder="ID">
-  </div>
+  </div> -->
   <div class="form-group col-3">
     <label for=""></label>
-    <input type="text" class="form-control timkiem" id="" placeholder="Nhập tên sản phẩm">
+    <input type="text" class="form-control timkiem_name" id="" placeholder="Nhập tên sản phẩm">
+  </div>
+  <div class="form-group col-1">
+    <label for=""></label>
+    <input type="text" class="form-control timkiem_id" id="" placeholder="ID">
+  </div>
+  </div>
+  <div class="row" style="margin-top:20px;">
+  <div class="form-group col-4">
+  <select class="form-select timkiem_danhmuc">
+  <option selected value = "">Chọn danh mục</option>
+  <?php
+    $sql_danhmuc = "SELECT id_Dsp,name_Nsp FROM danhmucsp";
+    $result = $conn->query($sql_danhmuc);
+    while ($row = $result->fetch_assoc())
+         {
+    echo '<option value = '.$row['id_Dsp'].'>'.$row['name_Nsp'].'</option>' ;
+}
+?>
+  
+</select>
+  </div>
   </div>
 <!-- 
   <button type="button submit" class="btn btn-primary">Lọc</button>
@@ -176,7 +208,7 @@ while ($row = $result->fetch_assoc())
     <input type="text" class="form-control" id="" value = "<?=$gia
 ?>" required name="gia">
   </div>
-  <div class="form-group col-2">
+  <!-- <div class="form-group col-2">
     <label for="">Còn lại</label>
     <input type="text" class="form-control" id="" value = "<?=$conlai
 ?>" required name="conlai">
@@ -185,7 +217,7 @@ while ($row = $result->fetch_assoc())
     <label for="">Đã bán</label>
     <input type="text" class="form-control" id="" value = "<?=$daban
 ?>" required name="daban">
-  </div>
+  </div> -->
   <div class="form-group">
     <label for="">Link ảnh</label>
     <input type="text" class="form-control" id="" value = "<?=$imglink
@@ -244,17 +276,38 @@ while ($row = $result->fetch_assoc())
 
 
  ///////////////////////////////////////
- $('.timkiem').keyup(function(){
-   var key = $('.timkiem').val();
-   $.post('sanpham_ajax.php',{data:key},function(data) {
-     $('.danhsach').html(data);
+ $('.timkiem_name').keyup(function(){
+  $('.timkiem_id').val("");
+  $('.timkiem_danhmuc').prop('selectedIndex',0);
+   var key = $('.timkiem_name').val();
+   $.post('sanpham_ajax.php',{data_name:key},function(result) {
+     $('.danhsach').html(result);
      
    })
 
  })
+ $('.timkiem_id').keyup(function(){
+  $('.timkiem_name').val("");
+  $('.timkiem_danhmuc').prop('selectedIndex',0);
+   var key = $('.timkiem_id').val();
+   $.post('sanpham_ajax.php',{data_id:key},function(result) {
+     $('.danhsach').html(result);
+     
+   })
+
+ })
+ $('.timkiem_danhmuc').change(function(){
+  $('.timkiem_id').val("");
+  $('.timkiem_name').val("");
+  var key = $('.timkiem_danhmuc').val();
+   $.post('sanpham_ajax.php',{data_dmuc:key},function(result) {
+     $('.danhsach').html(result);
+     
+     
+   })
 
 
-
+  })
   </script>
 </body>
 </html>

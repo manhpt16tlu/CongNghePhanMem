@@ -87,8 +87,22 @@ require('connect.php');
             <div class="row">
                 <?php
                     include 'connect.php';
+                   
                     while($row = $query->fetch_assoc()) {
                         $idsp=$row['id_sp'];
+
+                        //lấy số lượng trong kho hàng
+                        $sql_kho = "SELECT * FROM khohang WHERE id_sp = '$idsp'";
+                        $result_kho = $conn->query($sql_kho);
+                        
+                        
+                          while($row_kho = $result_kho->fetch_assoc()) {
+                            $daban = $row_kho['daban'];
+                          }
+
+
+                        //////////////////////////////////
+                        
                         if(!isset($user['email']))
                         {echo '
                             <div class="col c-2">
@@ -108,7 +122,7 @@ require('connect.php');
                                                 <i class="icon-star fas fa-star"></i>
                                                 <i class="icon-star fas fa-star"></i>
                                             </div>
-                                            <div class="recommend-item-sold-text c-5">Đã bán '.$row['daban'].'</div>
+                                            <div class="recommend-item-sold-text c-5">Đã bán '.$daban.'</div>
                                         </div>
                                         <div class="recommend-item-address">'.$row['xuat_xu'].'</div>
                                     </a>
@@ -133,8 +147,7 @@ require('connect.php');
                                                 <i class="icon-star fas fa-star"></i>
                                                 <i class="icon-star fas fa-star"></i>
                                             </div>
-                                            <div class="recommend-item-sold-text c-5">Đã xem '.$row['daban'].'</div>
-                                        </div>
+                                            <div class="recommend-item-sold-text c-5">Đã bán '.$daban.'</div>                                      </div>
                                         <div class="recommend-item-address">'.$row['xuat_xu'].'</div>
                                     </a>
                                 </div>

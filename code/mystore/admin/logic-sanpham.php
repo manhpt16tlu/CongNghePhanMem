@@ -25,8 +25,7 @@ $tensp = "";
 $dmuc = "";
 $mota = "";
 $gia = "";
-$conlai = "";
-$daban = "";
+
 $imglink = "";
 $xxu = "";
 if (isset($_GET['edit']))
@@ -36,7 +35,7 @@ if (isset($_GET['edit']))
 
     $edit = true;
 
-    $sql_view = "SELECT ten_sp,id_Dsp,mo_ta,xuat_xu,gia_sp,daban,soluong_ton,anh_sp FROM sanpham WHERE id_sp = '$id_view'";
+    $sql_view = "SELECT ten_sp,id_Dsp,mo_ta,xuat_xu,gia_sp,anh_sp FROM sanpham WHERE id_sp = '$id_view'";
     $result_edit = $conn->query($sql_view);
 
     while ($row = $result_edit->fetch_assoc())
@@ -45,8 +44,7 @@ if (isset($_GET['edit']))
         $dmuc = $row['id_Dsp'];
         $mota = $row['mo_ta'];
         $gia = $row['gia_sp'];
-        $conlai = $row['soluong_ton'];
-        $daban = $row['daban'];
+       
         $imglink = $row['anh_sp'];
         $xxu = $row['xuat_xu'];
     }
@@ -60,13 +58,12 @@ if (isset($_POST['add-btn']))
     $dmuc = $_POST['danhmuc'];
     $mota = $_POST['mota'];
     $gia = $_POST['gia'];
-    $conlai = $_POST['conlai'];
-    $daban = $_POST['daban'];
+    
     $imglink = $_POST['link'];
     $xxu = $_POST['xuatxu'];
 
-    $sql_add = "INSERT INTO sanpham (id_Dsp,ten_sp,mo_ta,xuat_xu,gia_sp,soluong_ton,anh_sp,daban)
-      VALUES ('$dmuc', '$tensp','$mota','$xxu','$gia','$conlai','$imglink','$daban')";
+    $sql_add = "INSERT INTO sanpham (id_Dsp,ten_sp,mo_ta,xuat_xu,gia_sp,anh_sp)
+      VALUES ('$dmuc', '$tensp','$mota','$xxu','$gia','$imglink')";
 
     if ($conn->query($sql_add) === true)
     {
@@ -88,12 +85,11 @@ if (isset($_POST['edit-btn']))
     $dmuc = $_POST['danhmuc'];
     $mota = $_POST['mota'];
     $gia = $_POST['gia'];
-    $conlai = $_POST['conlai'];
-    $daban = $_POST['daban'];
+   
     $imglink = $_POST['link'];
     $xxu = $_POST['xuatxu'];
 
-    $sql_edit = "UPDATE sanpham SET id_Dsp = '$dmuc',ten_sp = '$tensp',mo_ta='$mota',xuat_xu='$xxu',gia_sp='$gia',soluong_ton='$conlai',anh_sp='$imglink',daban='$daban' WHERE id_sp = '$id'";
+    $sql_edit = "UPDATE sanpham SET id_Dsp = '$dmuc',ten_sp = '$tensp',mo_ta='$mota',xuat_xu='$xxu',gia_sp='$gia',anh_sp='$imglink' WHERE id_sp = '$id'";
 
     if ($conn->query($sql_edit) === true)
     {

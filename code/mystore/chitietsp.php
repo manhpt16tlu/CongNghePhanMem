@@ -19,8 +19,8 @@
   $name = $result['ten_sp'];
   $img = $result['anh_sp'];
   $price = $result['gia_sp'];
-  $daban = $result['daban'];
-  $conlai = $result['soluong_ton'];
+ /* $daban = $result['daban'];
+  $conlai = $result['soluong_ton'];*/
   $mota = $result['mo_ta'];  
                 
                 
@@ -117,12 +117,12 @@
               <div class="name">
               <p><span>Yêu thích</span>[MÃ MADE20K3Q GIẢM 20% TỐI ĐA 30K ĐƠN TỐI THIỂU 500K] <?php echo ucwords($name);?></p>
               </div>
-              <div class="rate-bar">
+              <!-- <div class="rate-bar">
                             
-                <div style="margin:0 20px 0 0;"class="number-sell"><span><?php echo $conlai." ";?></span>Còn lại</div>
-                <div class="number-sold"><span><?php echo $daban." ";?></span>Đã bán</div>
+                <div style="margin:0 20px 0 0;"class="number-sell"><span><?php/* echo $conlai." ";*/s?></span>Còn lại</div>
+                <div class="number-sold"><span><?php/* echo $daban." ";*/?></span>Đã bán</div>
 
-              </div>
+              </div> -->
               <div class="price">
                 <p><?php echo $price;?>đ</p>
               </div>
