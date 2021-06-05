@@ -1,0 +1,30 @@
+.table_cm th, td{
+    border: 1px solid black; 
+ }
+ 
+ .table_cm{
+     border-collapse: collapse;
+     text-align: center;
+     
+ }
+ .table_cm th{
+     color: rgb(242, 243, 247);
+     height: 40px;
+     
+ }
+ .table_cm a{
+     text-decoration: none;
+ }
+ .tr_th{
+   background-color: black;  
+ }
+ .table_cm td{
+    height: 40px;
+    
+}
+#container_cm{
+    background-color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+ 

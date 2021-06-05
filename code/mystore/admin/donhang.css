@@ -1,0 +1,168 @@
+* {
+    box-sizing: inherit;
+}
+
+html {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+.c-2 {
+    flex: 16.6667%;
+    max-width: 16.6667%;
+}
+
+
+.c-10 {
+    flex: 83.3333%;
+    max-width: 83.3333%;
+}
+
+.donhang {
+    display: flex;
+    background-color: #ffebda;
+    padding: 20px 0;
+}
+
+.sitebar {
+    padding: 8px 0;
+}
+
+.category-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.category-item {
+    height: 32px;   
+    line-height: 32px;
+    padding: 4px 16px;
+    position: relative;
+}
+
+.category-item:hover {
+    border: 1px solid transparent;
+}
+
+.category-item > a{
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 500;
+    display: block;
+}
+
+.category-item:hover > a {
+    color: red;
+}
+
+.category-item:first-child {
+    margin-bottom: 16px;;
+}
+
+.category-item:first-child:hover {
+    border: none;
+}
+
+.category-item:first-child > a{
+    font-size: 20px;
+}
+
+.category-item:first-child:hover > a{
+    color: #000;
+}
+
+.category-item-icon {
+    font-size: 24px;
+}
+
+.order-manage {
+    position: absolute;
+    top: 0  ;
+    right: -150px;
+    display: none;
+    z-index: 1;
+}
+
+.category-item-order-manage:hover .order-manage{
+    display: block;
+}
+
+.order-manage-list {
+    padding-left: 0;
+    background-color: #fff;
+}
+
+.order-manage-list::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: -20px;
+    border-width: 20px 10px;
+    border-style: solid;
+    border-color: transparent #fff transparent transparent ;
+    
+}
+
+.order-manage-item {
+    list-style: none;
+}
+
+.order-manage-item:hover .order-manage-link{
+    color: red;
+}
+
+.order-manage-link {
+    width: 100%;
+    padding: 0 12px;
+    color: #333;
+    font-size: 15px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.order-manage-icon {
+    font-size: 8px;
+    margin-right: 8px;
+}
+
+/* -------------------donhang-content------------------- */
+
+.donhang-content {
+    border: 1px solid #ddd;  
+    padding: 0 20px;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.btn-them {
+    margin-top: 50px;
+    height: 30px;
+}
+
+.btn-luu {
+    height: 30px;
+}
+
+.btn-sua, .btn-xoa{
+    height: 40px;
+    width: 60px;
+    display: block;
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+}

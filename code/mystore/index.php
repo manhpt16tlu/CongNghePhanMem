@@ -136,7 +136,7 @@ require('connect.php');
                                         <div class="recommend-item-img" style="background-image: url('.$row['anh_sp'].');"></div>
                                         <div class="recommend-item-name">'.$row['ten_sp'].'</div>
                                         <div class="recommend-item-price">
-                                            <div class="recommend-item-price-initial">59.900.000đ</div>
+                                            <div class="">Giá</div>
                                             <div class="recommend-item-price-sale">'.$row['gia_sp'].'</div>
                                         </div>
                                         <div class="recommend-item-sold">

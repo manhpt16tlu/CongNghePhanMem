@@ -1,0 +1,61 @@
+.container_create input{
+    border-top: none;
+   border-left: none ;
+   border-right: none ;
+    border-bottom: solid 2px black ;
+    height: 30px;
+    width: 60%;
+}
+.container_create button{
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+}
+.container_create button:hover{
+    background-color: rgb(56, 49, 44);
+    font-size: 15px;
+    color: blanchedalmond;
+    
+}
+.container_create{
+    padding-left: 30%;
+}
+.container_update input{
+    border-top: none;
+   border-left: none ;
+   border-right: none ;
+    border-bottom: solid 2px black ;
+    height: 30px;
+    width: 60%;
+}
+.container_update button{
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+}
+.container_update button:hover{
+    background-color: rgb(56, 49, 44);
+    font-size: 15px;
+    color: blanchedalmond;
+    
+}
+.container_update{
+    padding-left: 30%;
+}
+.previous
+
+{
+    display: block;
+    width: 80%;
+    margin:0 auto;
+    text-align: center;
+    margin:50px 0;
+}
+.previous button
+{
+    border-radius:15px;
+    
+    position: relative;
+    top:-85px;
+    left:50px;
+}

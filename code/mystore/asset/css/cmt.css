@@ -26,8 +26,19 @@ h1{
 }
 #container_cmt{
   overflow: hidden;
+  background-color: white;
+  margin: 40px;
+  padding: 100px;
+}
+.feebback h3{
+  color: rgb(206, 12, 28);
+}
+.feebback b{
+  color: crimson;
+  font-family: 'Courier New', Courier, monospace;
+}
+.feebback{
   background-color: #faf9f8;
-  margin : 30px 200px 30px 200px;
-  padding: 100px;;
+  color: rgb(54, 58, 68);
 }
 

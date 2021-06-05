@@ -1,0 +1,96 @@
+.table_cm th, td{
+   border: 1px solid black; 
+}
+
+.table_cm{
+    border-collapse: collapse;
+    text-align: center;
+    
+}
+.table_cm th{
+    color: rgb(242, 243, 247);
+    height: 40px;
+    
+}
+.table_cm a{
+    text-decoration: none;
+}
+.tr_th{
+  background-color: black;  
+}
+.table_cm td{
+    height: 40px;
+    
+}
+.container_updatefb input{
+   border-top: none;
+   border-left: none ;
+   border-right: none ;
+    border-bottom: solid 2px black ;
+    height: 30px;
+    width: 60%;
+}
+.container_updatefb button{
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+}
+.container_updatefb button:hover{
+    background-color: rgb(56, 49, 44);
+    font-size: 15px;
+    color: blanchedalmond;
+}
+.update:hover{
+    color: rgb(187, 90, 55);
+}
+.delete:hover{
+    color: red;
+}
+.create:hover{
+    color: green;
+}
+.a{
+    color: rgb(30, 49, 190);
+}
+.container_createfb input{
+    border-top: none;
+    border-left: none ;
+    border-right: none ;
+     border-bottom: solid 2px black ;
+     height: 30px;
+     width: 60%;
+ }
+ .container_createfb button{
+     border-radius: 10px;
+     width: 100px;
+     height: 40px;
+ }
+ .container_createfb button:hover{
+     background-color: rgb(48, 51, 49);
+     font-size: 15px;
+     color: blanchedalmond;
+ }
+ .container_updatefb{
+    margin-left: 10%;
+    margin-right: 10%;
+ }
+ .container_updatefb a{
+     color:black;
+     font-size: 20px;
+ }
+ .container_createfb a{
+    color:black;
+    font-size: 20px;
+}
+.container_createfb{
+    margin-left: 10%;
+    margin-right: 10%;
+ }
+ .container_updatefb a:hover{
+     background-color: rgb(235, 230, 223);
+ }
+#container_cm{
+    background-color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+}

@@ -47,16 +47,16 @@
           <a class="nav-link" href="sanpham.php"><i class="fas fa-dice-d6"></i> Sản phẩm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href=""><i class="fas fa-warehouse"></i> Kho hàng</a>
+          <a class="nav-link" href="warehouse.php"><i class="fas fa-warehouse"></i> Kho hàng</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="khachhang.php"><i class="fas fa-user"></i> Khách hàng</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"> <i class="fas fa-scroll"></i> Đơn hàng</a>
+          <a class="nav-link" href="donhang.php"> <i class="fas fa-scroll"></i> Đơn hàng</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-pen"></i> Đánh giá sản phẩm</a>
+          <a class="nav-link" href="./feebback.php"><i class="fas fa-pen"></i> Đánh giá sản phẩm</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="fas fa-calculator"></i> Thống kê</a>
